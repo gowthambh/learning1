@@ -24,29 +24,15 @@ button:hover {
     background-color: #2980b9;
 }
 
-#game-container {
+#match-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.gift-box {
-    width: 100px;
-    height: 100px;
-    background-color: #3498db;
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    height: 200px;
 }
 
-.hidden {
-    background-color: #2ecc71;
+.secret-santa-match {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2ecc71;
 }

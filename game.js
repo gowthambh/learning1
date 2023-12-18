@@ -1,24 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const gifts = ["🎁", "🎄", "🧦", "🔔", "🕰", "🍬", "🍭", "🎅"];
+    const participants = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Harry"];
 
-    const gameContainer = document.getElementById("game-container");
+    const matchContainer = document.getElementById("match-container");
 
-    // Shuffle the gifts array
-    const shuffledGifts = [...gifts].sort(() => Math.random() - 0.5);
+    // Shuffle the participants array
+    const shuffledParticipants = [...participants].sort(() => Math.random() - 0.5);
 
-    // Create gift boxes
-    shuffledGifts.forEach((gift, index) => {
-        const giftBox = document.createElement("div");
-        giftBox.classList.add("gift-box");
-        giftBox.dataset.gift = gift;
-        giftBox.addEventListener("click", handleGiftClick);
-        gameContainer.appendChild(giftBox);
+    // Display the Secret Santa match
+    const secretSantaMatch = shuffledParticipants.reduce((matchObj, participant, index) => {
+        matchObj[participant] = shuffledParticipants[(index + 1) % shuffledParticipants.length];
+        return matchObj;
+    }, {});
+
+    Object.keys(secretSantaMatch).forEach((participant) => {
+        const matchText = document.createElement("p");
+        matchText.classList.add("secret-santa-match");
+        matchText.textContent = `${participant} -> ${secretSantaMatch[participant]}`;
+        matchContainer.appendChild(matchText);
     });
-
-    function handleGiftClick(event) {
-        const clickedGiftBox = event.target;
-        clickedGiftBox.classList.add("hidden");
-        const revealedGift = clickedGiftBox.dataset.gift;
-        alert(`You got: ${revealedGift}`);
-    }
 });
